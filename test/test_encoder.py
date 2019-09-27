@@ -13,5 +13,5 @@ pytest
 
 def testEncoder():
     assert encoder.encode('aa') == '2a'
-    assert encoder.encode('eeee') == '4e'
+    assert encoder.encode('eeee') == '3e'
     
