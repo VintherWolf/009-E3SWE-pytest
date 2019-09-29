@@ -2,7 +2,8 @@
 """
 Created on Thu Sep 26 20:00:32 2019
 
-@author: danie
+@author: Daniel Korsgaard Vinther Wolf
+Comment: Implementation from Anders Lehmann (AU-Herning)
 """
 
 def encode(mess):
