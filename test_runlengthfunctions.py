@@ -19,7 +19,7 @@ from fuzzing.fuzzer import FuzzExecutor
 # Input:
 # Files With Code Under Test
 # Files with fuzz input :
-numOfTestRuns = 20
+numOfTestRuns = 3
 filesWithCUT = ['src/runlengthfunctions.py']
 filesWithFuzzStimuli = ['src/decoderTest.txt']
 
@@ -46,10 +46,12 @@ if __name__ == '__main__':
     import sys
 
     def fuzzTest():
+        print("Running fuzzing tests")
         print(testFuzzEncoder())
         print("fuzzing tests Completed")
     
     def hypoTest():
+        print("Running hypothesis tests")
         test_decodeOnEncode()
         print("hypothesis tests Completed")
 
@@ -67,9 +69,9 @@ if __name__ == '__main__':
             print("Ok no hypothesis tests. Goodbye!\n")
     else:
         argv = sys.argv
-        if '-fuzztest' or '-ft' in argv:
+        if '-fuzztest' in argv or '-ft' in argv:
             fuzzTest()
-        elif '-hypotest' or '-ht' in argv:
+        elif '-hypotest' in argv or '-ht' in argv:
             hypoTest()
         else:
             Exception("No Tests selected!. Usage is '-ft' or '-ht'")
