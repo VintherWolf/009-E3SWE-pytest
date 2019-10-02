@@ -39,17 +39,33 @@ def test_decodeOnEncode(s):
     assert(decode(encode(s)) == s)
 
 if __name__ == '__main__': 
+    import sys
 
-    choice = input("Do you want to perform fuzzing tests? (y/yes or any other for no)\n")
-    if choice == 'y' or choice == 'yes':
+    def fuzzTest():
         print(testFuzzEncoder())
         print("fuzzing tests Completed")
-    else:
-        print("Ok no fuzzing tests!\n")    
     
-    choice = input("Do you want to perform hypothesis tests? (y/yes or any other for no)\n")
-    if choice == 'y' or choice == 'yes':
+    def hypoTest():
         test_decodeOnEncode()
         print("hypothesis tests Completed")
+
+    if len(sys.argv) == 1: # if not using CLI but user input
+        choice = input("Do you want to perform fuzzing tests? (y/yes or any other for no)\n")
+        if choice == 'y' or choice == 'yes':
+            fuzzTest()
+        else:
+            print("Ok no fuzzing tests!\n")    
+        
+        choice = input("Do you want to perform hypothesis tests? (y/yes or any other for no)\n")
+        if choice == 'y' or choice == 'yes':
+            hypoTest()
+        else:
+            print("Ok no hypothesis tests. Goodbye!\n")
     else:
-        print("Ok no hypothesis tests. Goodbye!\n")
+        argv = sys.argv
+        if '-fuzztest' or '-ft' in argv:
+            fuzzTest()
+        elif '-hypotest' or '-ht' in argv:
+            hypoTest()
+        else:
+            Exception("No Tests selected!. Usage is '-ft' or '-ht'")
