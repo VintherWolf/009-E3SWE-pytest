@@ -17,6 +17,8 @@ def encode(mess):
     res = []
     old = mess[0]
     i = 0
+    if not mess: 
+        return []
     for c in mess:
         if c == old:
             i += 1
@@ -30,6 +32,8 @@ def encode(mess):
 def decode(mess):
     res = ''
     count = 0
+    if not mess: 
+        return []
     for c in mess:
         if c.isdigit():
             count = count*10 + int(c)

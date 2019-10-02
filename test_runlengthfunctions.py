@@ -9,6 +9,7 @@ from src import encode, decode
 
 '''------< pytests >------'''
 import pytest
+
 def testEncoder():
     assert encode('aa') == '2a'
     assert encode('eeee') == '4e'
@@ -26,15 +27,18 @@ filesWithFuzzStimuli = ['src/decoderTest.txt']
 fuzzingTarget = ['python & '+filesWithCUT[0]+' -d']
 
 # Test function, fuzzing: 
+@pytest.mark.skip(reason="Do not pytest fuzzTest")
 def testFuzzEncoder():
     fuzzer = FuzzExecutor(fuzzingTarget,filesWithFuzzStimuli)
     fuzzer.run_test(numOfTestRuns)
     return fuzzer.stats
 
 '''------< Hypothesis tests >------'''
-from hypothesis import given
+from hypothesis import given, example
 from hypothesis.strategies import characters, text
-@given(text(alphabet=characters()))
+@given(s = text(alphabet=characters()))
+@example(s = '')
+@pytest.mark.skip(reason="Do not pytest hypoTest")
 def test_decodeOnEncode(s):
     assert(decode(encode(s)) == s)
 
