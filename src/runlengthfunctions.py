@@ -14,11 +14,11 @@ class MyException(Exception):
 def encode(mess):
     ''' Run Length Encoding - konverter strenge
         fra 'wwwwwwwbbbb' '6w4b' '''
+    if not mess: 
+        return ''
     res = []
     old = mess[0]
     i = 0
-    if not mess: 
-        return []
     for c in mess:
         if c == old:
             i += 1
@@ -30,10 +30,10 @@ def encode(mess):
     return ''.join(res)
 
 def decode(mess):
+    if not mess: 
+        return ''    
     res = ''
     count = 0
-    if not mess: 
-        return []
     for c in mess:
         if c.isdigit():
             count = count*10 + int(c)

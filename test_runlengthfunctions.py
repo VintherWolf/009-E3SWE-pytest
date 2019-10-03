@@ -13,7 +13,13 @@ import pytest
 def testEncoder():
     assert encode('aa') == '2a'
     assert encode('eeee') == '4e'
+    assert encode('') == ''
 
+def testDecoder():
+    assert decode('2a') == 'aa'
+    assert decode('2a3b4n') == 'aabbbnnnn'
+    assert encode('') == ''
+    
 '''------< Fuzzing Tests >------'''
 from fuzzing.fuzzer import FuzzExecutor
 # Input:
