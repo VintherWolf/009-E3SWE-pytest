@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-#set -e
+set -e
 
-#. ./env/Scripts/activate
+. ./env/Scripts/activate
 
-#PYTHONPATH=. python -m test_runlengthfunctions
+PYTHONPATH=. python -m pytest test_runlengthfunctions.py
 
-pytest
