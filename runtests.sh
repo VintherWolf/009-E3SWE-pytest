@@ -3,4 +3,6 @@ set -e
 
 . ./env/Scripts/activate
 
-PYTHONPATH=. python -m test_runlengthfunctions
+#PYTHONPATH=. python -m test_runlengthfunctions
+
+pytest
